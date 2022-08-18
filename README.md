@@ -43,7 +43,7 @@ docker build -t graph-uk-image .
 ```
 Then create the docker container out of the image using the below command:
 ```
-docker run -d --name=graph-uk-container -v <Osm Directory>:/data -p 127.0.0.1:8989:8989 graph-uk-image /opt/graphhopper/starter.sh
+docker run -d --name=graph-uk-container -v <Osm Directory>:/opt/graphhopper/data -p 127.0.0.1:8989:8989 graph-uk-image /opt/graphhopper/starter.sh
 ```
 Please note you can change the name of the image, name of the container, and the port if you want. remember to replace <Osm Directory> with your osm file directory. 
 
@@ -61,13 +61,4 @@ docker rm graph-uk-container
 docker rmi graph-uk-image
 ```
 In case your project run successfully, you can give it a try and see if it return the right information by passing two points by an APi request. 
-Open the container in a terminal window. The easiest way is to use the Docker desktop software as below:
-
-![Desktop Docker](./images/Desktop-Docker.jpg)
-
-Once the teminal is opened, use a curl command to send a request to graphhopper. 
-```
- curl 'http://localhost:8989/route/?point=51.249469%2C-0.154495&point=51.512455%2C-0.146599&locale=en-US&elevation=true&profile=car_with_turn_costs_short_fastest&use_miles=false&layer=Omniscale&details=road_class&points_encoded=false&instructions=false'
-```
-please note the points are located within the UK so you might need to try points within your region. The response should looks like this:
-![Container Test](./images/Container-Terminal.jpg)Container-Terminal
+Open the localhost:8989 and you should be able to reach out to graphhopper.
